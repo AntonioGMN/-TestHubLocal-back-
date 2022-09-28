@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { unauthorized } from '../utils/errorUtils.js';
+import * as sessoesRepository from '../repositories/sessoesRepository.js';
 
 export default async function validateToken(
   req: Request,
@@ -15,10 +16,21 @@ export default async function validateToken(
 
   try {
     const chaveSecreta = process.env.JWT_SECRET;
+    const t = jwt.verify(token, chaveSecreta);
     const { userId } = jwt.verify(token, chaveSecreta);
     res.locals.userId = userId;
-  } catch {
-    return res.status(401).send('invalide token');
+  } catch (error) {
+    const { expiredAt } = error;
+
+    if (expiredAt) {
+      const response = await sessoesRepository.findByToken(token);
+      if (response) {
+        await sessoesRepository.logout(response.userid);
+      }
+      return res.status(401).send('token espirou');
+    }
+
+    return res.status(401).send('token invalido');
   }
 
   return nest();

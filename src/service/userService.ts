@@ -12,7 +12,6 @@ interface loginDate {
 
 export async function signUp(userDate: user) {
   const findedUser = await userRepository.findByEmail(userDate.email);
-  console.log(findedUser);
 
   if (findedUser) {
     forbidden('esse usuário já está cadastrado');
@@ -36,14 +35,13 @@ export async function login(loginDate: loginDate) {
   if (!validatePassword) unauthorized('Password invalid');
 
   const sessao = await sessoesRepository.findByUserId(findedUser.id);
-  console.log(sessao);
   if (sessao) unauthorized('Esse usuario já está logado');
 
   const secretKey = process.env.JWT_SECRET;
   const token = jwt.sign({ userId: findedUser.id }, secretKey, {
     expiresIn: 3600,
   });
-  await sessoesRepository.create(findedUser.id);
+  await sessoesRepository.create(findedUser.id, token);
 
   return token;
 }

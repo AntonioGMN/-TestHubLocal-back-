@@ -8,8 +8,9 @@
 
 	CREATE TABLE sessoes (
 		id SERIAL PRIMARY KEY,
-		userId INTEGER NOT NULL REFERENCES users(id)
-	)
+		userId INTEGER NOT NULL REFERENCES users(id),
+		token TEXT NOT NULL UNIQUE
+	);
 	
 	CREATE TABLE empresas (
 		id SERIAL PRIMARY KEY,
