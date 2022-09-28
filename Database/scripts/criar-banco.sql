@@ -1,0 +1,47 @@
+	CREATE TABLE users (
+		id SERIAL PRIMARY KEY,
+		name TEXT NOT NULL,
+		email TEXT NOT NULL UNIQUE,
+		password TEXT NOT NULL
+	);
+
+
+	CREATE TABLE sessoes (
+		id SERIAL PRIMARY KEY,
+		userId INTEGER NOT NULL REFERENCES users(id)
+	)
+	
+	CREATE TABLE empresas (
+		id SERIAL PRIMARY KEY,
+		nome TEXT NOT NULL UNIQUE,
+		CNPJ TEXT NOT NULL UNIQUE,
+		descricao TEXT NOT NULL
+	);
+
+	CREATE TABLE locais (
+		id SERIAL PRIMARY KEY,
+		nome TEXT NOT NULL UNIQUE,
+		CEP INT NOT NULL UNIQUE,
+		empresaId INTEGER NOT NULL REFERENCES empresas(id)
+	);
+
+	CREATE TABLE responsaveis (
+		id SERIAL PRIMARY KEY,
+		nome TEXT NOT NULL,
+		telefone INT NOT NULL,
+		CEP INT NOT NULL UNIQUE
+	);
+
+	CREATE TABLE tickets (
+		id SERIAL PRIMARY KEY,
+		titulo TEXT NOT NULL,
+		dataCriacao TIMESTAMP NOT NULL DEFAULT NOW(),
+		dataAtualizacao TIMESTAMP DEFAULT NULL,
+		criador INTEGER NOT NULL REFERENCES users(id),
+		usuario INTEGER NOT NULL REFERENCES users(id),
+		status TEXT NOT NULL,
+		CEP INT NOT NULL UNIQUE
+	);
+
+
+
