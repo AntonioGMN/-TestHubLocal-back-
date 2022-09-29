@@ -3,7 +3,6 @@ import * as userService from '../service/userService.js';
 
 export async function sighUp(req: Request, res: Response) {
   const user = req.body;
-  console.log(user);
   await userService.signUp(user);
   res.sendStatus(201);
 }
