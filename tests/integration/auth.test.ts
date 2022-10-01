@@ -3,6 +3,7 @@ import app from '../../src/app.js';
 import clearDb from '../utils/clearDB.js';
 
 describe('auth test', () => {
+  beforeAll(clearDb);
   const user = {
     name: 'neto',
     email: 'neto@gmail.com',
@@ -24,5 +25,5 @@ describe('auth test', () => {
     expect(resulte.status).toEqual(200);
   });
 
-  afterAll(clearDb);
+  //afterAll(clearDb);
 });

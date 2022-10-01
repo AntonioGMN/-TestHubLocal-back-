@@ -26,11 +26,25 @@
 		empresaId INTEGER NOT NULL REFERENCES empresas(id)
 	);
 
-	CREATE TABLE responsaveis (
+	CREATE TABLE responsaveis(
 		id SERIAL PRIMARY KEY,
 		nome TEXT NOT NULL,
-		telefone INT NOT NULL,
-		CEP INT NOT NULL UNIQUE
+		telefone TEXT NOT NULL,
+		CEP TEXT NOT NULL UNIQUE
+	);
+
+	CREATE TABLE responsaveisEmpresas (
+		id SERIAL PRIMARY KEY,
+		responsavelId INTEGER NOT NULL REFERENCES responsaveis(id),
+		empresaId INTEGER NOT NULL REFERENCES empresas(id),
+		principal BOOLEAN NOT NULL DEFAULT FALSE
+	);
+
+	CREATE TABLE responsaveisLocais (
+		id SERIAL PRIMARY KEY,
+		responsavelId INTEGER NOT NULL REFERENCES responsaveis(id),
+		empresaId INTEGER NOT NULL REFERENCES locais(id),
+		principal BOOLEAN NOT NULL DEFAULT FALSE
 	);
 
 	CREATE TABLE tickets (

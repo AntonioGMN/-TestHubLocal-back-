@@ -1,10 +1,11 @@
 import supertest from 'supertest';
 import app from '../../src/app.js';
+import { faker } from '@faker-js/faker';
 
 export default async function getToken() {
   const user = {
     name: 'lucas',
-    email: 'lucas@gmail.com',
+    email: faker.internet.email(),
     password: '123',
   };
 

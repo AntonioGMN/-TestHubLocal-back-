@@ -8,5 +8,6 @@ empresasRouter.post(
   validateToken,
   empresasController.create,
 );
+empresasRouter.get('/empresas', validateToken, empresasController.get);
 
 export default empresasRouter;
