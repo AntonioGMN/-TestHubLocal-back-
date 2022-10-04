@@ -22,3 +22,8 @@ export async function findByEmail(email: string) {
   );
   return response.rows[0];
 }
+
+export async function get() {
+  const response = await connection.query('SELECT * FROM users');
+  return response.rows;
+}

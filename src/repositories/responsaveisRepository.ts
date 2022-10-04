@@ -36,11 +36,11 @@ export async function createPrincipalResponsavelEmpresa(
 
 export async function createPrincipalResponsavelLocal(
   responsavelId: number,
-  empresaId: number,
+  localId: number,
 ) {
   const response = await connection.query(
-    `INSERT INTO responsaveisLocais (responsavelId, empresaId, principal) VALUES ($1, $2, $3)`,
-    [responsavelId, empresaId, true],
+    `INSERT INTO responsaveisLocais (responsavelId, localId, principal) VALUES ($1, $2, $3)`,
+    [responsavelId, localId, true],
   );
   return;
 }

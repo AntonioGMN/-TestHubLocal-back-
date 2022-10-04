@@ -4,8 +4,8 @@ import * as empresaRepository from '../../src/repositories/empresasRepository.js
 
 export default async function getEmpresa() {
   const empresa = {
-    nome: 'netflix',
-    cnpj: '987645',
+    nome: faker.name.firstName(),
+    cnpj: faker.address.buildingNumber(),
     descricao: 'é boa',
   };
 

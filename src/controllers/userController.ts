@@ -12,7 +12,7 @@ export async function login(req: Request, res: Response) {
   const user = { email, password };
 
   const token = await userService.login(user);
-  res.send(token).status(200);
+  res.send(token);
 }
 
 export async function logout(req: Request, res: Response) {

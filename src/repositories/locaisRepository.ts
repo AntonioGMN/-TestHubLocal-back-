@@ -8,7 +8,7 @@ export default interface localDate {
 
 export async function create(local: localDate) {
   const { nome, cep, empresaId } = local;
-  const response = await connection.query(
+  await connection.query(
     `INSERT INTO locais (nome, cep, empresaId) VALUES ($1, $2, $3)`,
     [nome, cep, empresaId],
   );
@@ -22,13 +22,21 @@ export async function findByCEP(cep: string) {
   return response.rows[0];
 }
 
-export async function createPrincipalResponsavelLocal(
-  responsavelId: number,
-  empresaId: number,
-) {
+export async function findById(id: number) {
+  const response = await connection.query(`SELECT * FROM locais WHERE id=$1`, [
+    id,
+  ]);
+  return response.rows[0];
+}
+
+export async function get() {
   const response = await connection.query(
-    `INSERT INTO responsaveisLocais (responsavelId, empresaId, principal) VALUES ($1, $2, $3)`,
-    [responsavelId, empresaId, true],
+    `SELECT locais.*, empresas.nome as "empresaNome",
+    responsaveis.nome as "responsavelNome", responsaveisLocais.principal FROM locais
+    JOIN responsaveisLocais ON locais.id=responsaveisLocais.localId
+    JOIN responsaveis ON responsaveis.id=responsaveisLocais.responsavelId
+    JOIN empresas ON locais.empresaid=empresas.id
+    `,
   );
-  return;
+  return response.rows;
 }

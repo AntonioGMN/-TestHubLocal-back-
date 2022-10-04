@@ -1,5 +1,3 @@
-import * as empresasRepository from '../repositories/empresasRepository.js';
-import empresaDate from '../repositories/empresasRepository.js';
 import * as responsaveisRepository from '../repositories/responsaveisRepository.js';
 import responsavelDate from '../repositories/responsaveisRepository.js';
 
@@ -23,7 +21,7 @@ export async function create(local: localDate, responsavel: responsavelDate) {
   return;
 }
 
-// export async function get() {
-//   const empresas = await empresasRepository.get();
-//   return empresas;
-// }
+export async function get() {
+  const empresas = await locaisRepository.get();
+  return empresas;
+}

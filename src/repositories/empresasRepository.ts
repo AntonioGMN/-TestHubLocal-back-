@@ -25,8 +25,7 @@ export async function findByCNPJ(cnpj: string) {
 
 export async function get() {
   const response = await connection.query(
-    //`SELECT * FROM empresas`,
-    `SELECT empresas.nome as "empresaNome", * FROM empresas
+    `SELECT *, empresas.nome as "empresaNome" FROM empresas
     JOIN responsaveisEmpresas ON empresas.id=responsaveisEmpresas.empresaId
     JOIN responsaveis ON responsaveis.id=responsaveisEmpresas.responsavelId`,
   );

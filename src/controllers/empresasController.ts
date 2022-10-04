@@ -9,5 +9,5 @@ export async function create(req: Request, res: Response) {
 
 export async function get(req: Request, res: Response) {
   const empresas = await empresasService.get();
-  res.send(empresas).status(200);
+  res.send(empresas);
 }

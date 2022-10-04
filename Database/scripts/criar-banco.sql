@@ -28,7 +28,7 @@
 
 	CREATE TABLE responsaveis(
 		id SERIAL PRIMARY KEY,
-		nome TEXT NOT NULL,
+		nome TEXT NOT NULL,	
 		telefone TEXT NOT NULL,
 		CEP TEXT NOT NULL UNIQUE
 	);
@@ -43,20 +43,23 @@
 	CREATE TABLE responsaveisLocais (
 		id SERIAL PRIMARY KEY,
 		responsavelId INTEGER NOT NULL REFERENCES responsaveis(id),
-		empresaId INTEGER NOT NULL REFERENCES locais(id),
+		localId INTEGER NOT NULL REFERENCES locais(id),
 		principal BOOLEAN NOT NULL DEFAULT FALSE
 	);
 
+	-- CREATE EXTENSION IF NOT EXISTS "uuid-ossp" 
+
 	CREATE TABLE tickets (
-		id SERIAL PRIMARY KEY,
+		id uuid NOT NULL PRIMARY KEY,
 		titulo TEXT NOT NULL,
 		dataCriacao TIMESTAMP NOT NULL DEFAULT NOW(),
 		dataAtualizacao TIMESTAMP DEFAULT NULL,
-		criador INTEGER NOT NULL REFERENCES users(id),
-		usuario INTEGER NOT NULL REFERENCES users(id),
-		status TEXT NOT NULL,
-		CEP INT NOT NULL UNIQUE
+		criadorId INTEGER NOT NULL REFERENCES users(id),
+		usuarioId INTEGER NOT NULL REFERENCES users(id),
+		status TEXT NOT NULL CHECK (status = 'PENDENTE' OR status = 'PROGRESSO' OR status = 'CONCLUÍDO' ),
+		localId INTEGER NOT NULL REFERENCES locais(id)
 	);
 
+	
 
 

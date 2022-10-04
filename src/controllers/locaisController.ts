@@ -7,7 +7,7 @@ export async function create(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
-// export async function get(req: Request, res: Response) {
-//   const locais = await locaisService.get();
-//   res.send(empresas).status(200);
-// }
+export async function get(req: Request, res: Response) {
+  const locais = await locaisService.get();
+  res.send(locais).status(200);
+}
