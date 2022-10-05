@@ -19,15 +19,13 @@ export async function create(ticket: ticketDate) {
   return;
 }
 
-// export async function findByCNPJ(cnpj: string) {
-//   const response = await connection.query(
-//     `SELECT * FROM empresas WHERE cnpj=$1`,
-//     [cnpj],
-//   );
-//   return response.rows[0];
-// }
-
 export async function get() {
-  const response = await connection.query(`SELECT * FROM tickets`);
+  const response = await connection.query(`
+  SELECT t.*, l.nome as local, l.cep, e.nome as "empresaResponsavel", 
+  uc.name as "criador", u.name as "usuarioNome"  FROM tickets t 
+  JOIN users uc ON t.criadorId=uc.id 
+  JOIN users u ON t.usuarioId=u.id
+  JOIN locais l ON t.localId=l.id 
+  JOIN empresas e ON l.empresaId=e.id`);
   return response.rows;
 }

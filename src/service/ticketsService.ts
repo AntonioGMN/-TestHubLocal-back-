@@ -17,7 +17,7 @@ export async function create(
 ) {
   const id = uuid();
   const { nome: localNome } = await locaisRepository.findById(localId);
-  const titulo = `${id} ${localNome}}`;
+  const titulo = `${id} ${localNome}`;
   console.log(criadorId, usuarioId, status, localId);
 
   await ticketsRepository.create({

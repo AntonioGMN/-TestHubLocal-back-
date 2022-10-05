@@ -10,12 +10,17 @@ describe('auth test', () => {
     password: '123',
   };
 
-  it('signUp a user e return 201', async () => {
+  it('get all users e receive 200', async () => {
+    const resulte = await supertest(app).get('/users');
+    expect(resulte.status).toEqual(200);
+  });
+
+  it('signUp a user e receive 201', async () => {
     const resulte = await supertest(app).post('/signUp').send(user);
     expect(resulte.status).toEqual(201);
   });
 
-  it('login end return 200', async () => {
+  it('login end receive 200', async () => {
     const loginDate = {
       email: user.email,
       password: user.password,

@@ -47,8 +47,6 @@
 		principal BOOLEAN NOT NULL DEFAULT FALSE
 	);
 
-	-- CREATE EXTENSION IF NOT EXISTS "uuid-ossp" 
-
 	CREATE TABLE tickets (
 		id uuid NOT NULL PRIMARY KEY,
 		titulo TEXT NOT NULL,

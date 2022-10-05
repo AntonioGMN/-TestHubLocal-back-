@@ -50,3 +50,8 @@ export async function logout(userId: number) {
   await sessoesRepository.logout(userId);
   return;
 }
+
+export async function get() {
+  const users = await userRepository.get();
+  return users;
+}

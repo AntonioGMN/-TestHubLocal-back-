@@ -22,3 +22,8 @@ export async function logout(req: Request, res: Response) {
   await userService.logout(userId);
   res.sendStatus(200);
 }
+
+export async function get(req: Request, res: Response) {
+  const users = await userService.get();
+  res.send(users).status(200);
+}

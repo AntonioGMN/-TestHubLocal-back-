@@ -24,6 +24,6 @@ export async function findByEmail(email: string) {
 }
 
 export async function get() {
-  const response = await connection.query('SELECT * FROM users');
+  const response = await connection.query('SELECT id, name, email FROM users');
   return response.rows;
 }
