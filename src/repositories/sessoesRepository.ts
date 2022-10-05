@@ -11,7 +11,6 @@ export async function create(userId: number, token: string) {
 export async function logout(userId: number) {
   await connection.query(`DELETE FROM sessoes WHERE userId=$1`, [userId]);
 
-  console.log('afsg');
   return;
 }
 

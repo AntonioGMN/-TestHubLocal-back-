@@ -25,6 +25,5 @@ export default function errorHandlingMiddleware(
     }
   }
 
-  console.log(error);
   return res.sendStatus(500);
 }

@@ -17,7 +17,6 @@ export async function login(req: Request, res: Response) {
 
 export async function logout(req: Request, res: Response) {
   const { userId } = res.locals;
-  console.log(userId);
 
   await userService.logout(userId);
   res.sendStatus(200);
