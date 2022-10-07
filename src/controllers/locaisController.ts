@@ -32,3 +32,12 @@ export async function update(req: Request, res: Response) {
 
   res.sendStatus(200);
 }
+
+export async function updateResponsavel(req: Request, res: Response) {
+  const { responsavel } = req.body;
+  const { responsavelId } = req.params;
+
+  await locaisService.updateResponsavel(responsavel, +responsavelId);
+
+  res.sendStatus(200);
+}

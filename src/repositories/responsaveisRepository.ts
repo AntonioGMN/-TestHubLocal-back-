@@ -67,3 +67,15 @@ export async function getByLocalId(localId: number) {
   );
   return response.rows;
 }
+
+export async function update(
+  responsavel: responsavelDate,
+  responsavelId: number,
+) {
+  const { nome, cep, telefone } = responsavel;
+  await connection.query(
+    `UPDATE responsaveis SET nome=$1, cep=$2, telefone=$3 WHERE id=$4`,
+    [nome, cep, telefone, responsavelId],
+  );
+  return;
+}

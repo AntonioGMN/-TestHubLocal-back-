@@ -22,4 +22,10 @@ locaisRouter.put(
   locaisController.update,
 );
 
+locaisRouter.put(
+  '/locais/responsaveis/update/:responsavelId',
+  validateToken,
+  locaisController.updateResponsavel,
+);
+
 export default locaisRouter;

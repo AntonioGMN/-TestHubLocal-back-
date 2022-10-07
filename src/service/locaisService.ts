@@ -51,3 +51,12 @@ export async function update(local: localDate, localId: number) {
 
   return localUpdated;
 }
+
+export async function updateResponsavel(
+  responsavel: responsavelDate,
+  responsavelId: number,
+) {
+  await responsaveisRepository.update(responsavel, responsavelId);
+
+  return;
+}
