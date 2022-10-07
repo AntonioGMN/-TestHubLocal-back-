@@ -35,3 +35,14 @@ export async function get() {
   const tickets = await ticketsRepository.get();
   return tickets;
 }
+
+export async function update(titulo: string, localId: number) {
+  const tickets = await ticketsRepository.getByLocalId(localId);
+
+  tickets.forEach(async (t) => {
+    const slitTitulo = t.titulo.split(' ');
+    const newTitulo = `${slitTitulo[0]} ${titulo}`;
+    await ticketsRepository.update(newTitulo, t.id);
+  });
+  return;
+}

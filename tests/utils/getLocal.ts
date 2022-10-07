@@ -6,8 +6,8 @@ import getEmpresa from './getEmpresa.js';
 export default async function getLocal() {
   const empresa = await getEmpresa();
   const local = {
-    nome: 'apartamento top',
-    cep: '59061300',
+    nome: faker.name.firstName(),
+    cep: faker.random.numeric(8),
     empresaId: empresa.id,
   };
 

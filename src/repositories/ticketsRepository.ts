@@ -29,3 +29,20 @@ export async function get() {
   JOIN empresas e ON l.empresaId=e.id`);
   return response.rows;
 }
+
+export async function getByLocalId(localId: number) {
+  const response = await connection.query(
+    `
+  SELECT * from tickets WHERE localId=$1`,
+    [localId],
+  );
+  return response.rows;
+}
+
+export async function update(titulo: string, ticketId: string) {
+  await connection.query(
+    `UPDATE tickets SET titulo=$1, dataAtualizacao=current_timestamp WHERE id=$2`,
+    [titulo, ticketId],
+  );
+  return;
+}

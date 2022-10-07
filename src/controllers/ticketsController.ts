@@ -4,7 +4,6 @@ import * as ticketsService from '../service/ticketsService.js';
 export async function create(req: Request, res: Response) {
   const { usuarioId, status, localId } = req.body;
   const { userId: criadorId } = res.locals;
-  console.log(criadorId);
   await ticketsService.create(criadorId, usuarioId, status, localId);
 
   res.sendStatus(201);

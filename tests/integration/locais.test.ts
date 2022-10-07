@@ -7,8 +7,10 @@ import getLocal from '../utils/getLocal.js';
 
 import * as userRepository from '../../src/repositories/userRepository.js';
 
-describe('empresas tests', () => {
+describe('locais and tickets tests', () => {
   beforeAll(clearDb);
+
+  let localGlobal;
 
   const responsavel = {
     nome: 'pedro',
@@ -53,7 +55,6 @@ describe('empresas tests', () => {
     const local = await getLocal();
 
     const users = await userRepository.get();
-    console.log(users);
 
     const body = {
       usuarioId: users[0].id,
@@ -73,6 +74,25 @@ describe('empresas tests', () => {
     const token = await getToken();
     const resulte = await supertest(app)
       .get('/tickets')
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(resulte.status).toEqual(200);
+  });
+
+  it('update local end receve 200', async () => {
+    const token = await getToken();
+    const local = await getLocal();
+    const empresa = await getEmpresa();
+
+    const newLocal = {
+      nome: 'casa top',
+      cep: '59010120',
+      empresaId: empresa.id,
+    };
+
+    const resulte = await supertest(app)
+      .put(`/locais/update/${local.id}`)
+      .send(newLocal)
       .set('Authorization', `Bearer ${token}`);
 
     expect(resulte.status).toEqual(200);

@@ -1,8 +1,8 @@
 import * as responsaveisRepository from '../repositories/responsaveisRepository.js';
 import responsavelDate from '../repositories/responsaveisRepository.js';
-
 import * as locaisRepository from '../repositories/locaisRepository.js';
 import localDate from '../repositories/locaisRepository.js';
+import * as ticketsService from './ticketsService.js';
 
 export async function create(local: localDate, responsavel: responsavelDate) {
   await locaisRepository.create(local);
@@ -47,5 +47,7 @@ export async function getResponsaveis(localId: number) {
 
 export async function update(local: localDate, localId: number) {
   const localUpdated = await locaisRepository.update(local, localId);
+  await ticketsService.update(local.nome, localId);
+
   return localUpdated;
 }

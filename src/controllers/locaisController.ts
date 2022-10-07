@@ -27,10 +27,8 @@ export async function createResponsavel(req: Request, res: Response) {
 export async function update(req: Request, res: Response) {
   const { nome, cep, empresaId } = req.body;
   const { localId } = req.params;
-  try {
-    await locaisService.update({ nome, cep, empresaId }, +localId);
-  } catch (err) {
-    console.log(err);
-  }
+
+  await locaisService.update({ nome, cep, empresaId }, +localId);
+
   res.sendStatus(200);
 }
