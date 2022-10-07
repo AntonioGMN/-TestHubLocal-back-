@@ -28,4 +28,10 @@ locaisRouter.put(
   locaisController.updateResponsavel,
 );
 
+locaisRouter.put(
+  '/locais/responsaveis/principal',
+  validateToken,
+  locaisController.updatePrincipalResponsavel,
+);
+
 export default locaisRouter;

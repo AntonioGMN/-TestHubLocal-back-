@@ -60,3 +60,19 @@ export async function updateResponsavel(
 
   return;
 }
+
+export async function updatePrincipalResponsavel(
+  responsavelId: number,
+  localId: number,
+) {
+  const principal = await locaisRepository.getPrincipal(localId);
+
+  await responsaveisRepository.setPrincipal(
+    false,
+    principal.responsavelid,
+    localId,
+  );
+  await responsaveisRepository.setPrincipal(true, responsavelId, localId);
+
+  return;
+}

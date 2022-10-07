@@ -79,3 +79,15 @@ export async function update(
   );
   return;
 }
+
+export async function setPrincipal(
+  principal: boolean,
+  responsavelId: number,
+  localId: number,
+) {
+  await connection.query(
+    `UPDATE responsaveisLocais SET principal=$1 WHERE responsavelId=$2 AND localId=$3`,
+    [principal, responsavelId, localId],
+  );
+  return;
+}

@@ -41,3 +41,11 @@ export async function updateResponsavel(req: Request, res: Response) {
 
   res.sendStatus(200);
 }
+
+export async function updatePrincipalResponsavel(req: Request, res: Response) {
+  const { responsavelId, localId } = req.body;
+
+  await locaisService.updatePrincipalResponsavel(responsavelId, localId);
+
+  res.sendStatus(200);
+}

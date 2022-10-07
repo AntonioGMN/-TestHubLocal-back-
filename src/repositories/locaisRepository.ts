@@ -51,3 +51,14 @@ export async function update(local: localDate, localId: number) {
   );
   return;
 }
+
+export async function getPrincipal(localId) {
+  const response = await connection.query(
+    `SELECT * from responsaveis resp  
+     JOIN responsaveisLocais rl ON resp.id=rl.responsavelId
+     WHERE rl.principal='true' AND rl.localId=$1
+     `,
+    [localId],
+  );
+  return response.rows[0];
+}
