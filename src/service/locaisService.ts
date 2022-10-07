@@ -21,7 +21,31 @@ export async function create(local: localDate, responsavel: responsavelDate) {
   return;
 }
 
+export async function createResponsavel(
+  responsavel: responsavelDate,
+  localId: number,
+) {
+  await responsaveisRepository.create(responsavel);
+  const { id: responsavelId } = await responsaveisRepository.findByCEP(
+    responsavel.cep,
+  );
+
+  await responsaveisRepository.createResponsavelLocal(responsavelId, localId);
+
+  return;
+}
+
 export async function get() {
   const empresas = await locaisRepository.get();
   return empresas;
+}
+
+export async function getResponsaveis(localId: number) {
+  const responsaveis = await responsaveisRepository.getByLocalId(localId);
+  return responsaveis;
+}
+
+export async function update(local: localDate, localId: number) {
+  const localUpdated = await locaisRepository.update(local, localId);
+  return localUpdated;
 }

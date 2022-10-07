@@ -5,5 +5,21 @@ import validateToken from '../middlerware/validateToken.js';
 const locaisRouter = Router();
 locaisRouter.post('/locais', validateToken, locaisController.create);
 locaisRouter.get('/locais', validateToken, locaisController.get);
+locaisRouter.post(
+  '/locais/responsavel',
+  validateToken,
+  locaisController.createResponsavel,
+);
+locaisRouter.get(
+  '/locais/responsaveis/:localId',
+  validateToken,
+  locaisController.getResponsaveis,
+);
+
+locaisRouter.put(
+  '/locais/update/:localId',
+  validateToken,
+  locaisController.update,
+);
 
 export default locaisRouter;

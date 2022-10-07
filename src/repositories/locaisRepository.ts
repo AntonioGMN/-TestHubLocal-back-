@@ -35,8 +35,19 @@ export async function get() {
     responsaveis.nome as "responsavelNome", responsaveisLocais.principal FROM locais
     JOIN responsaveisLocais ON locais.id=responsaveisLocais.localId
     JOIN responsaveis ON responsaveis.id=responsaveisLocais.responsavelId
-    JOIN empresas ON locais.empresaid=empresas.id
+    JOIN empresas ON locais.empresaid=empresas.id 
+    WHERE responsaveisLocais.principal=true
     `,
   );
   return response.rows;
+}
+
+export async function update(local: localDate, localId: number) {
+  const { nome, cep, empresaId } = local;
+
+  await connection.query(
+    `UPDATE locais SET nome=$1, cep=$2, empresaId=$3 WHERE id=$4`,
+    [nome, cep, empresaId, localId],
+  );
+  return;
 }

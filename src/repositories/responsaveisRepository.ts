@@ -38,9 +38,32 @@ export async function createPrincipalResponsavelLocal(
   responsavelId: number,
   localId: number,
 ) {
-  const response = await connection.query(
+  await connection.query(
     `INSERT INTO responsaveisLocais (responsavelId, localId, principal) VALUES ($1, $2, $3)`,
     [responsavelId, localId, true],
   );
   return;
+}
+
+export async function createResponsavelLocal(
+  responsavelId: number,
+  localId: number,
+) {
+  await connection.query(
+    `INSERT INTO responsaveisLocais (responsavelId, localId) VALUES ($1, $2)`,
+    [responsavelId, localId],
+  );
+  return;
+}
+
+export async function getByLocalId(localId: number) {
+  const response = await connection.query(
+    `SELECT resp.*, resploc.principal from responsaveis resp
+     JOIN responsaveisLocais respLoc ON resp.id=respLoc.responsavelId
+     JOIN locais l ON  respLoc.localId=l.id
+     WHERE l.id=$1
+    `,
+    [localId],
+  );
+  return response.rows;
 }
