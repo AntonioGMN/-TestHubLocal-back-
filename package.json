@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx nodemon src/service.ts",
-    "test": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i --timeout 10000000"
+    "test": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
