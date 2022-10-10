@@ -90,9 +90,14 @@ JWT_SECRET=123456
 ### Run the back-end with
 
 ```bash
-npm start
+npm run dev
 ```
 
+### Run the back-end with
+
+```bash
+npm run dev
+```
 
 
 
