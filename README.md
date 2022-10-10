@@ -93,8 +93,9 @@ JWT_SECRET=123456
 npm run dev
 ```
 
-## To Test
-### Create an environment variables file in the project root (.env) and configure it as shown in .env.example file:
+## How to Test
+  
+### Create an environment variables file in the project root (.env.test) and configure it as shown in .env.example file:
 
 ```bash
 NODE_ENV=test
