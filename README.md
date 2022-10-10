@@ -93,15 +93,23 @@ JWT_SECRET=123456
 npm run dev
 ```
 
-### Run the back-end with
+## To Test
+### Create an environment variables file in the project root (.env) and configure it as shown in .env.example file:
 
 ```bash
-npm run dev
+NODE_ENV=test
+DB_USER=postgres
+DB_PASS=123456
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=hubLocal_test
+DATABASE_URL= DB_USER://postgres:DB_PASS@DB_HOST:DB_PORT/DB_NAME
+PORT=4000
+JWT_SECRET=123456
 ```
 
+### Run the test with
 
-
-
-
-
+```bash
+npm run test
 ```
